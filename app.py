@@ -1,5 +1,3 @@
-# app.py
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -17,12 +15,20 @@ st.write("Upload a `.txt` file. The app will remove common stopwords and show yo
 uploaded_file = st.file_uploader("Choose a .txt file", type=["txt"])
 
 if uploaded_file is not None:
+    # Read the file content once and store it
+    file_content = uploaded_file.read()
+    text = None
+    
     for encoding in ['utf-8', 'latin-1', 'cp1252', 'utf-16']:
-    try:
-        text = uploaded_file.read().decode(encoding)
-        break
-    except UnicodeDecodeError:
-        continue
+        try:
+            text = file_content.decode(encoding)
+            break
+        except UnicodeDecodeError:
+            continue
+    
+    if text is None:
+        st.error("Failed to decode the file. Please try a different file with standard text encoding.")
+        st.stop()
     
     # Simulate HDFS: Split into chunks by paragraph
     chunks = text.split('\n\n')
