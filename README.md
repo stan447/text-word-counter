@@ -6,7 +6,7 @@ https://text-word-counter-fnz5ptynkyocscoiqzzamg.streamlit.app/#word-frequency-a
 
 A Streamlit web application that analyzes text files and displays the most frequent words using a MapReduce-like approach, with stopword removal and visualization.
 
-![App Screenshot](https://via.placeholder.com/800x500?text=Word+Frequency+Analyzer+Screenshot)
+![App Screenshot](Screenshot%202025-05-27%20114616.png)
 
 ## Features
 
