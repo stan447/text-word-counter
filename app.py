@@ -17,7 +17,12 @@ st.write("Upload a `.txt` file. The app will remove common stopwords and show yo
 uploaded_file = st.file_uploader("Choose a .txt file", type=["txt"])
 
 if uploaded_file is not None:
-    text = uploaded_file.read().decode("utf-8")
+    for encoding in ['utf-8', 'latin-1', 'cp1252', 'utf-16']:
+    try:
+        text = uploaded_file.read().decode(encoding)
+        break
+    except UnicodeDecodeError:
+        continue
     
     # Simulate HDFS: Split into chunks by paragraph
     chunks = text.split('\n\n')
